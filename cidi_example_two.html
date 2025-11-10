@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>CIDI - Business analyst</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+<style>
+.txta {
+    width: 100%;
+    min-height: 100px;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    overflow: hidden;
+    line-height: 1.4;
+}
+
+:root {
+    --AIMblue: #4353A3;
+    --darkBlue: #38416D;
+    --teal: #5DC8B9;
+    --cream: #F1EEDE;
+    --grey: #e7e9ec;
+    --rust: #AF4510;
+    --navy: #12195C;
+    --white: #ffffff;
+    --lightBlue: #AEBAE4;
+}
+
+input {
+    border: none;
+    width: fit-content;
+
+}
+
+body {
+    font-family: "IBM Plex Sans", sans-serif;
+}
+
+table {
+    width: 100%;
+    margin:0;
+    padding:0;
+    border-collapse: collapse;
+    border-spacing: 0;
+    text-align: left;
+}
+
+table tr {
+    border: 1px solid var(--AIMblue);
+    padding: 5px;
+}
+
+table th, table td {
+    border: 1px solid var(--AIMblue);
+    padding: 10px;
+}
+
+table th {
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    background-color: var(--darkBlue);
+    color: var(--white);
+}
+
+tr:nth-child(even) {
+    background-color: var(--grey); /*Grey of torment!*/
+} 
+
+tr:nth-child(odd) {
+    background-color: white; 
+} 
+
+.high {
+background-color: orange;
+}
+
+ @media screen and (max-width: 700px) {
+
+table {
+    border: 0;
+    border: none;
+}
+
+table thead {
+    display: none;
+}
+
+table tr {
+    margin-bottom: 10px;
+    display: block;
+    border-bottom: 2px solid var(--AIMblue);
+    border-left: 1px solid var(--lightBlue);
+    border-right: 1px solid var(--lightBlue);
+    border-top: 1px solid var(--lightBlue);
+}
+
+table td {
+    display: block;
+    text-align: right;
+    font-size: 13px;
+    border-bottom: 1px dotted var(--rust);
+    border-left: 0px dotted #ccc;
+    border-right: 0px dotted #ccc;
+    border-top: 0px dotted #ccc;
+}
+
+table td:last-child {
+    border-bottom: 0;
+}
+
+table td:before {
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+}
+}
+
+</style>
+  </head>
+<body>
+<table>
+ <!--<colgroup>
+        <col style="width: 10%;">
+        <col style="width: 30%;">
+      </colgroup>-->
+  <thead>
+    <th>Component</th>
+    <th>Purpose</th>
+    <th>Example</th>
+  </thead>
+  <tbody>
+    <tr>
+        <td data-label="Component">
+           Context
+        </td>
+        <td data-label="Purpose">
+            Provide background or role for the model, illustrate the scenario.
+        </td>
+        <td data-label="Example">
+            You are a business analyst preparing an executive summary for a quarterly meeting.
+        </td>
+    </tr>
+    <tr>
+        <td data-label="Component">
+           Instruction
+        </td>
+        <td data-label="Purpose">
+          Specify the task you want the AI to perform.
+        </td>
+        <td data-label="Example">
+            Summarise the company’s Q2 performance.
+        </td>
+    </tr>
+    <tr>
+        <td data-label="Component">
+           Details
+        </td>
+        <td data-label="Purpose">
+          Provide specific requirements or constraints, including output.
+        </td>
+        <td data-label="Example">
+            Use 5–6 bullet points with one short paragraph summary at the top. Include key metrics and one identified risk.
+        </td>
+    </tr>
+    <tr>
+        <td data-label="Component">
+            Input
+        </td>
+        <td data-label="Purpose">
+            "Here's our 5 year P&L, market trend analysis, outlook for the upcoming FY."
+        </td>
+        <td data-label="Example">
+           Revenue grew by 8%, costs rose by 3%, staff turnover decreased by 1.5%, and customer satisfaction improved from 82% to 89%.
+        </td>
+    </tr>
+  </tbody>
+</table>
+</body>
+</html>
