@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <title>CIDI Basics</title>
+    <title>Comparing zero-shot and few-shot prompting</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
@@ -76,7 +76,7 @@ tr:nth-child(odd) {
 .high {
 background-color: orange;
 }
-/*
+
  @media screen and (max-width: 700px) {
 
 table {
@@ -116,7 +116,7 @@ table td:before {
     float: left;
     font-weight: bold;
 }
-}*/
+}
 
 </style>
   </head>
@@ -127,54 +127,39 @@ table td:before {
         <col style="width: 30%;">
       </colgroup>-->
   <thead>
-    <th>Component</th>
-    <th>Purpose</th>
-  <!-- <th>Example</th>--> 
+    <th>Type</th>
+    <th>Description</th>
+    <th>Best For</th>
+    <th>Limitation</th>
   </thead>
   <tbody>
     <tr>
-        <td data-label="Component">
-           Context
+        <td data-label="Type">
+           Zero-shot
         </td>
-        <td data-label="Purpose">
-            Provide background or role for the model, illustrate the scenario.
+        <td data-label="Description">
+            Performs task without examples
         </td>
-         <!--<td data-label="Example">
-            You are a business analyst preparing an executive summary for a quarterly meeting.
-        </td>--> 
+        <td data-label="Best For">
+           Quick drafts, brainstorming, basic instructions
+        </td>
+        <td data-label="Limitation">
+        Inconsistent phrasing or tone
+        </td>
     </tr>
-    <tr>
-        <td data-label="Component">
-           Instruction
+        <tr>
+        <td data-label="Type">
+          Few-shot
         </td>
-        <td data-label="Purpose">
-          Specify the task you want the AI to perform.
+        <td data-label="Description">
+           Uses examples to guide style and structure
         </td>
-         <!--<td data-label="Example">
-            Summarise the company’s Q2 performance.
-        </td>--> 
-    </tr>
-    <tr>
-        <td data-label="Component">
-           Details
+        <td data-label="Best For">
+           Consistency, tone control, formatting
         </td>
-        <td data-label="Purpose">
-          Provide specific requirements or constraints, including output.
+        <td data-label="Limitation">
+            Requires effort to supply examples
         </td>
-        <!-- <td data-label="Example">
-            Use 5–6 bullet points with one short paragraph summary at the top. Include key metrics and one identified risk.
-        </td>--> 
-    </tr>
-    <tr>
-        <td data-label="Component">
-            Input
-        </td>
-        <td data-label="Purpose">
-            "Here's our 5 year P&L, market trend analysis, outlook for the upcoming FY."
-        </td>
-        <!-- <td data-label="Example">
-           Revenue grew by 8%, costs rose by 3%, staff turnover decreased by 1.5%, and customer satisfaction improved from 82% to 89%.
-        </td>--> 
     </tr>
   </tbody>
 </table>
