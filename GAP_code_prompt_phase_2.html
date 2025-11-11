@@ -5,45 +5,79 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>To-Do List</title>
   <style>
+    /* Reset default browser styles */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
 
+    /* Main body styling with gradient background */
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
       background: linear-gradient(135deg, #e0f2fe 0%, #ddd6fe 100%);
       min-height: 100vh;
-      padding: 2rem;
+      padding: 1rem;
     }
 
+    /* Main container - centers content and sets max width */
     .container {
       max-width: 700px;
       margin: 0 auto;
     }
 
+    /* Main heading */
     h1 {
       text-align: center;
       color: #1f2937;
-      font-size: 2.5rem;
-      margin-bottom: 2rem;
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
     }
 
+    /* Larger heading on desktop */
+    @media (min-width: 640px) {
+      body {
+        padding: 2rem;
+      }
+      
+      h1 {
+        font-size: 2.5rem;
+        margin-bottom: 2rem;
+      }
+    }
+
+    /* Container for the input form at the top */
     .input-container {
       background: white;
-      padding: 1.5rem;
+      padding: 1rem;
       border-radius: 0.5rem;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       margin-bottom: 1.5rem;
     }
 
-    .input-row {
-      display: flex;
-      gap: 0.5rem;
-      margin-bottom: 0.75rem;
+    /* More padding on desktop */
+    @media (min-width: 640px) {
+      .input-container {
+        padding: 1.5rem;
+      }
     }
 
+    /* Row layout for input fields and button - stacks on mobile */
+    .input-row {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    /* Side-by-side layout on larger screens */
+    @media (min-width: 640px) {
+      .input-row {
+        flex-direction: row;
+        margin-bottom: 0.75rem;
+      }
+    }
+
+    /* Text input field for task name */
     #todoInput {
       flex: 1;
       padding: 0.75rem 1rem;
@@ -51,12 +85,15 @@
       border-radius: 0.5rem;
       font-size: 1rem;
       outline: none;
+      width: 100%;
     }
 
+    /* Blue border when text input is focused */
     #todoInput:focus {
       border-color: #3b82f6;
     }
 
+    /* Date picker input field */
     #todoDate {
       padding: 0.75rem 1rem;
       border: 2px solid #d1d5db;
@@ -64,12 +101,22 @@
       font-size: 1rem;
       outline: none;
       cursor: pointer;
+      width: 100%;
     }
 
+    /* Auto-width on desktop */
+    @media (min-width: 640px) {
+      #todoDate {
+        width: auto;
+      }
+    }
+
+    /* Blue border when date input is focused */
     #todoDate:focus {
       border-color: #3b82f6;
     }
 
+    /* Add button styling */
     #addBtn {
       background: #3b82f6;
       color: white;
@@ -80,44 +127,74 @@
       cursor: pointer;
       transition: background 0.2s;
       white-space: nowrap;
+      width: 100%;
     }
 
+    /* Auto-width on desktop */
+    @media (min-width: 640px) {
+      #addBtn {
+        width: auto;
+      }
+    }
+
+    /* Darker blue on hover */
     #addBtn:hover {
       background: #2563eb;
     }
 
+    /* Container for the list of todos */
     .todos-container {
       background: white;
-      padding: 1.5rem;
+      padding: 1rem;
       border-radius: 0.5rem;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
 
+    /* More padding on desktop */
+    @media (min-width: 640px) {
+      .todos-container {
+        padding: 1.5rem;
+      }
+    }
+
+    /* Message shown when there are no todos */
     .empty-state {
       text-align: center;
       color: #9ca3af;
       padding: 2rem;
     }
 
+    /* Unordered list containing all todo items */
     #todoList {
       list-style: none;
     }
 
+    /* Individual todo item styling */
     .todo-item {
       display: flex;
       align-items: center;
-      gap: 0.75rem;
-      padding: 1rem;
+      gap: 0.5rem;
+      padding: 0.75rem;
       background: #f9fafb;
       border-radius: 0.5rem;
       margin-bottom: 0.5rem;
       transition: background 0.2s;
     }
 
+    /* More spacing on desktop */
+    @media (min-width: 640px) {
+      .todo-item {
+        gap: 0.75rem;
+        padding: 1rem;
+      }
+    }
+
+    /* Slightly darker background on hover */
     .todo-item:hover {
       background: #f3f4f6;
     }
 
+    /* Custom checkbox for completing tasks */
     .todo-checkbox {
       width: 1.5rem;
       height: 1.5rem;
@@ -129,47 +206,77 @@
       align-items: center;
       justify-content: center;
       transition: all 0.2s;
+      -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
+      min-width: 1.5rem; /* Ensure consistent size */
+      min-height: 1.5rem;
     }
 
+    /* Larger checkbox on desktop */
+    @media (min-width: 640px) {
+      .todo-checkbox {
+        width: 1.5rem;
+        height: 1.5rem;
+      }
+    }
+
+    /* Green checkbox when task is completed */
     .todo-checkbox.checked {
       background: #10b981;
       border-color: #10b981;
     }
 
+    /* Checkmark symbol inside completed checkbox */
     .todo-checkbox.checked::after {
       content: '✓';
       color: white;
       font-weight: bold;
     }
 
+    /* Container for task text and date */
     .todo-content {
       flex: 1;
       display: flex;
       flex-direction: column;
       gap: 0.25rem;
+      min-width: 0; /* Allows text to wrap properly on mobile */
     }
 
+    /* The task text itself */
     .todo-text {
       color: #1f2937;
+      word-wrap: break-word; /* Wrap long text on mobile */
+      overflow-wrap: break-word;
     }
 
+    /* Strikethrough text when task is completed */
     .todo-text.completed {
       text-decoration: line-through;
       color: #9ca3af;
     }
 
+    /* Container for date display and edit button */
     .todo-date-display {
-      font-size: 0.875rem;
+      font-size: 0.8rem;
       color: #6b7280;
       display: flex;
       align-items: center;
       gap: 0.5rem;
+      flex-wrap: wrap; /* Wrap on small screens if needed */
     }
 
+    /* Slightly larger on desktop */
+    @media (min-width: 640px) {
+      .todo-date-display {
+        font-size: 0.875rem;
+      }
+    }
+
+    /* Grayed out date for completed tasks */
     .todo-date-display.completed {
       color: #9ca3af;
     }
 
+    /* Inline date picker when editing a date */
     .date-input-inline {
       padding: 0.25rem 0.5rem;
       border: 1px solid #d1d5db;
@@ -178,25 +285,37 @@
       cursor: pointer;
     }
 
+    /* Blue border when inline date picker is focused */
     .date-input-inline:focus {
       outline: none;
       border-color: #3b82f6;
     }
 
+    /* Button to edit or add a date */
     .edit-date-btn {
       background: none;
       border: none;
       color: #6b7280;
       cursor: pointer;
       padding: 0;
-      font-size: 0.875rem;
+      font-size: 0.8rem;
       text-decoration: underline;
+      -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
     }
 
+    /* Slightly larger on desktop */
+    @media (min-width: 640px) {
+      .edit-date-btn {
+        font-size: 0.875rem;
+      }
+    }
+
+    /* Blue color on hover */
     .edit-date-btn:hover {
       color: #3b82f6;
     }
 
+    /* Delete button (trash icon) */
     .delete-btn {
       background: none;
       border: none;
@@ -206,18 +325,27 @@
       font-size: 1.25rem;
       transition: color 0.2s;
       flex-shrink: 0;
+      -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
+      min-width: 2rem; /* Larger tap target on mobile */
+      min-height: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
+    /* Darker red on hover */
     .delete-btn:hover {
       color: #dc2626;
     }
 
+    /* Progress counter at the bottom */
     .progress {
       text-align: center;
       color: #6b7280;
       margin-top: 1rem;
     }
 
+    /* Red styling for overdue dates */
     .overdue {
       color: #ef4444;
       font-weight: 500;
@@ -228,6 +356,7 @@
   <div class="container">
     <h1>My To-Do List</h1>
     
+    <!-- Input form for adding new tasks -->
     <div class="input-container">
       <div class="input-row">
         <input type="text" id="todoInput" placeholder="Add a new task..." />
@@ -236,6 +365,7 @@
       </div>
     </div>
 
+    <!-- Container for displaying todos -->
     <div class="todos-container">
       <div id="emptyState" class="empty-state">No tasks yet. Add one above!</div>
       <ul id="todoList"></ul>
@@ -244,9 +374,13 @@
   </div>
 
   <script>
+    // Array to store all todo items
     let todos = [];
+    
+    // Track which todo's date is currently being edited (null if none)
     let editingDateId = null;
 
+    // Get references to DOM elements
     const todoInput = document.getElementById('todoInput');
     const todoDate = document.getElementById('todoDate');
     const addBtn = document.getElementById('addBtn');
@@ -254,21 +388,30 @@
     const emptyState = document.getElementById('emptyState');
     const progress = document.getElementById('progress');
 
+    /**
+     * Adds a new todo to the list
+     * Creates a todo object with a unique ID, text, optional date, and completed status
+     */
     function addTodo() {
       const text = todoInput.value.trim();
       if (text) {
         todos.push({
-          id: Date.now(),
+          id: Date.now(), // Use timestamp as unique ID
           text: text,
-          date: todoDate.value || null,
+          date: todoDate.value || null, // Store date as string or null
           completed: false
         });
+        // Clear input fields after adding
         todoInput.value = '';
         todoDate.value = '';
         render();
       }
     }
 
+    /**
+     * Toggles the completed status of a todo
+     * @param {number} id - The unique ID of the todo to toggle
+     */
     function toggleTodo(id) {
       todos = todos.map(todo =>
         todo.id === id ? { ...todo, completed: !todo.completed } : todo
@@ -276,16 +419,29 @@
       render();
     }
 
+    /**
+     * Removes a todo from the list
+     * @param {number} id - The unique ID of the todo to delete
+     */
     function deleteTodo(id) {
       todos = todos.filter(todo => todo.id !== id);
       render();
     }
 
+    /**
+     * Enters edit mode for a todo's date
+     * @param {number} id - The unique ID of the todo whose date to edit
+     */
     function startEditingDate(id) {
       editingDateId = id;
       render();
     }
 
+    /**
+     * Updates the date of a todo and exits edit mode
+     * @param {number} id - The unique ID of the todo to update
+     * @param {string} newDate - The new date string (YYYY-MM-DD format)
+     */
     function updateDate(id, newDate) {
       todos = todos.map(todo =>
         todo.id === id ? { ...todo, date: newDate || null } : todo
@@ -294,43 +450,63 @@
       render();
     }
 
+    /**
+     * Formats a date string and checks if it's overdue
+     * @param {string} dateString - Date in YYYY-MM-DD format
+     * @returns {object|null} Object with formatted text and overdue status, or null if no date
+     */
     function formatDate(dateString) {
       if (!dateString) return null;
+      
+      // Parse date and set time to midnight for accurate comparison
       const date = new Date(dateString + 'T00:00:00');
       const today = new Date();
       today.setHours(0, 0, 0, 0);
       
+      // Format date as "Nov 15, 2024"
       const options = { month: 'short', day: 'numeric', year: 'numeric' };
       const formatted = date.toLocaleDateString('en-US', options);
       
+      // Check if date is in the past
       if (date < today) {
         return { text: formatted, overdue: true };
       }
       return { text: formatted, overdue: false };
     }
 
+    /**
+     * Renders the entire todo list and updates the UI
+     * This is called whenever the todos array changes
+     */
     function render() {
+      // Show empty state if no todos exist
       if (todos.length === 0) {
         emptyState.style.display = 'block';
         todoList.style.display = 'none';
         progress.style.display = 'none';
       } else {
+        // Hide empty state and show todo list
         emptyState.style.display = 'none';
         todoList.style.display = 'block';
         progress.style.display = 'block';
 
+        // Generate HTML for each todo item
         todoList.innerHTML = todos.map(todo => {
           const dateInfo = todo.date ? formatDate(todo.date) : null;
           const isEditing = editingDateId === todo.id;
           
           let dateDisplay = '';
+          
+          // Show date input if currently editing this todo's date
           if (isEditing) {
             dateDisplay = `
               <div class="todo-date-display">
                 📅 <input type="date" class="date-input-inline" value="${todo.date || ''}" data-id="${todo.id}" autofocus />
               </div>
             `;
-          } else if (todo.date) {
+          } 
+          // Show formatted date with edit button if date exists
+          else if (todo.date) {
             const overdueClass = dateInfo.overdue && !todo.completed ? 'overdue' : '';
             dateDisplay = `
               <div class="todo-date-display ${todo.completed ? 'completed' : ''}">
@@ -338,7 +514,9 @@
                 <button class="edit-date-btn" data-id="${todo.id}">edit</button>
               </div>
             `;
-          } else {
+          } 
+          // Show "add date" button if no date exists
+          else {
             dateDisplay = `
               <div class="todo-date-display">
                 <button class="edit-date-btn" data-id="${todo.id}">+ add date</button>
@@ -346,6 +524,7 @@
             `;
           }
 
+          // Return complete HTML for this todo item
           return `
             <li class="todo-item">
               <div class="todo-checkbox ${todo.completed ? 'checked' : ''}" data-id="${todo.id}"></div>
@@ -358,17 +537,20 @@
           `;
         }).join('');
 
+        // Update progress counter
         const completed = todos.filter(t => t.completed).length;
         progress.textContent = `${completed} of ${todos.length} tasks completed`;
 
-        // Add event listener for date input if editing
+        // Attach event listeners to date input if in edit mode
         if (editingDateId !== null) {
           const dateInput = todoList.querySelector('.date-input-inline');
           if (dateInput) {
             dateInput.focus();
+            // Save when date changes
             dateInput.addEventListener('change', (e) => {
               updateDate(Number(e.target.dataset.id), e.target.value);
             });
+            // Save when user clicks away
             dateInput.addEventListener('blur', (e) => {
               updateDate(Number(e.target.dataset.id), e.target.value);
             });
@@ -377,14 +559,18 @@
       }
     }
 
+    // Event listener: Add todo when button is clicked
     addBtn.addEventListener('click', addTodo);
     
+    // Event listener: Add todo when Enter key is pressed in text input
     todoInput.addEventListener('keypress', (e) => {
       if (e.key === 'Enter') {
         addTodo();
       }
     });
 
+    // Event listener: Handle clicks within the todo list (event delegation)
+    // This handles checkbox clicks, delete clicks, and edit date clicks
     todoList.addEventListener('click', (e) => {
       if (e.target.classList.contains('todo-checkbox')) {
         toggleTodo(Number(e.target.dataset.id));
@@ -395,6 +581,7 @@
       }
     });
 
+    // Initial render to display empty state
     render();
   </script>
 </body>
