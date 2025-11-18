@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Acknowledging your strengths</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+<style>
+.txta {
+  width: 100%;
+  min-height: 100px;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  overflow: hidden;
+  line-height: 1.4;
+}
+:root {
+        --AIMblue: #4353A3;
+        --darkBlue: #38416D;
+        --teal: #5DC8B9;
+        --cream: #F1EEDE;
+        --grey: #e7e9ec;
+        --rust: #AF4510;
+        --navy: #12195C;
+        --white: #ffffff;
+        --lightBlue: #AEBAE4;
+      }
+input {
+  border: none;
+  width: fit-content;
+  
+}
+      body {
+        font-family: "IBM Plex Sans", sans-serif;
+      }
+
+      table {
+        width: 100%;
+        margin:0;
+        padding:0;
+        border-collapse: collapse;
+        border-spacing: 0;
+        text-align: left;
+      }
+
+      table tr {
+        border: 1px solid var(--AIMblue);
+        padding: 5px;
+      }
+
+      table th, table td {
+        border: 1px solid var(--AIMblue);
+        padding: 10px;
+      }
+
+      table th {
+        font-size: 16px;
+        font-weight: bold;
+        letter-spacing: 1px;
+        background-color: var(--darkBlue);
+        color: var(--white)
+      }
+      tr:nth-child(even) {
+  background-color: var(--grey); /*Grey of torment!*/
+} 
+
+      tr:nth-child(odd) {
+  background-color: white; 
+} 
+
+/*     @media screen and (max-width: 800px) {
+
+        table {
+          border: 0;
+          border: none;
+        }
+
+        table thead {
+          display: none;
+        }
+
+        table tr {
+          margin-bottom: 10px;
+          display: block;
+          border-bottom: 2px solid var(--AIMblue);
+          border-left: 1px solid var(--lightBlue);
+          border-right: 1px solid var(--lightBlue);
+          border-top: 1px solid var(--lightBlue);
+        }
+
+        table td {
+          display: block;
+          text-align: right;
+          font-size: 13px;
+          border-bottom: 1px dotted var(--rust);
+          border-left: 0px dotted #ccc;
+          border-right: 0px dotted #ccc;
+          border-top: 0px dotted #ccc;
+        }
+
+        table td:last-child {
+          border-bottom: 0;
+        }
+
+        table td:before {
+          content: attr(data-label);
+          float: left;
+          font-weight: bold;
+        }
+      }*/
+
+</style>
+  </head>
+<body>
+<table>
+   <colgroup>
+        <col style="width: 50%;">
+        <col style="width: 50%;">
+      </colgroup>
+  <thead>
+    <th>Cognitive distortions</th>
+    <th>Personal reflection</th>
+  </thead>
+  <tbody>
+    <tr>
+        <td>
+        <ul>
+            <li><b>All-or-Nothing</b> – seeing things in extremes e.g. only good or bad, with no middle ground.</li>
+            <li><b>Example:</b> I was presented with an opportunity to learn a new method at work. I thought that if I don’t
+                 do this perfectly, I have failed completely. The consequence is I turned down the opportunity to avoid making a fool of myself.</li>
+        </ul>
+        </td>
+        <td data-label="Identify what you do well">
+            <textarea placeholder="Enter your thoughts here" class="txta"></textarea>
+        </td>
+    </tr>
+    <tr>
+        <td>
+        <ul>
+            <li><b>Catastrophising</b> – automatically assuming the worst.</li>
+            <li><b>Example:</b> My work colleague was quieter around me than usual. I assumed I must have done someone
+                 to upset them. I thought that if I don’t fix it they will no longer want anything to do with me. 
+                 The consequence of this was I allowed my fear to take over the conversation creating confusion and
+                  upset as I tried to fix a problem that didn’t exist.</li>
+        </ul>
+        </td>
+        <td data-label="How can you do more of it?">
+          <textarea placeholder="Enter your thoughts here" class="txta"></textarea>
+        </td>
+    </tr>
+    <tr>
+        <td>
+        <ul>
+            <li><b>Filtering</b> – focusing solely on negative details while ignoring positive ones.</li>
+            <li><b>Example: </b>I received feedback on my presentation. I received numerous compliments, but
+                 I fixated on the one piece of constructive criticism. The consequence was I felt the entire
+                  presentation was a failure and did not try again.</li>
+        </ul>
+        </td>
+        <td data-label="How can you build on it?">
+            <textarea placeholder="Enter your thoughts here" class="txta"></textarea>
+        </td>
+    </tr>
+    <tr>
+        <td>
+        <ul>
+            <li><b>Personalising and blame</b> – taking responsibility for things outside of one’s control or blaming oneself excessively.</li>
+            <li><b>Example: </b>In my previous role I continually blamed myself for my boss’ aggressive behaviour. 
+                Consequently, I stayed in a toxic work environment trying to work on myself for far too long. </li>
+        </ul>
+        </td>
+        <td data-label="How can you build on it?">
+            <textarea placeholder="Enter your thoughts here" class="txta"></textarea>
+        </td>
+    </tr>
+  </tbody>
+</table>
+<div style="margin:12px 0; display:flex; gap:8px;">
+  <button id="export-png" type="button">Export PNG</button>
+  <button id="export-pdf" type="button">Export PDF</button>
+</div>
+</body>
+<script>
+  // Targets all textareas with class "txta"
+let textareas = document.querySelectorAll('.txta'),
+    hiddenDiv = document.createElement('div'),
+    content = null;
+
+// Adds a class to all textareas
+for (let j of textareas) {
+  j.classList.add('txtstuff');
+}
+
+// Build the hidden div's attributes
+
+// The line below is needed if you move the style lines to CSS
+// hiddenDiv.classList.add('hiddendiv');
+
+// Add the "txta" styles, which are common to both textarea and hiddendiv
+// If you want, you can remove those from CSS and add them via JS
+hiddenDiv.classList.add('txta');
+
+// Add the styles for the hidden div
+// These can be in the CSS, just remove these three lines and uncomment the CSS
+hiddenDiv.style.display = 'none';
+hiddenDiv.style.whiteSpace = 'pre-wrap';
+hiddenDiv.style.wordWrap = 'break-word';
+
+// Loop through all the textareas and add the event listener
+for(let i of textareas) {
+  (function(i) {
+    // Note: Use 'keyup' instead of 'input'
+    // if you want older IE support
+    i.addEventListener('input', function() {
+      
+      // Append hiddendiv to parent of textarea, so the size is correct
+      i.parentNode.appendChild(hiddenDiv);
+      
+      // Remove this if you want the user to be able to resize it in modern browsers
+      i.style.resize = 'none';
+      
+            // This removes scrollbars
+      i.style.overflow = 'hidden';
+     
+      // Every input/change, grab the content
+      content = i.value;
+
+      // Add the same content to the hidden div
+      
+      // This is for old IE
+      content = content.replace(/\n/g, '<br>');
+      
+      // The <br ..> part is for old IE
+      // This also fixes the jumpy way the textarea grows if line-height isn't included
+      hiddenDiv.innerHTML = content + '<br style="line-height: 3px;">';
+
+      // Briefly make the hidden div block but invisible
+      // This is in order to read the height
+      hiddenDiv.style.visibility = 'hidden';
+      hiddenDiv.style.display = 'block';
+      i.style.height = hiddenDiv.offsetHeight + 'px';
+
+      // Make the hidden div display:none again
+      hiddenDiv.style.visibility = 'visible';
+      hiddenDiv.style.display = 'none';
+    });
+  })(i);
+}
+</script>
+
+<!-- Add html2canvas and jsPDF (CDN) -->
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+// Export table to PNG
+document.getElementById('export-png').addEventListener('click', async () => {
+  const table = document.querySelector('table');
+  // ensure hiddenDiv doesn't affect capture
+  const canvas = await html2canvas(table, { scale: 2, backgroundColor: '#ffffff', useCORS: true });
+  const dataUrl = canvas.toDataURL('image/png');
+  const link = document.createElement('a');
+  link.href = dataUrl;
+  link.download = 'platforms.png';
+  link.click();
+});
+
+// Export table to PDF (A4 portrait)
+document.getElementById('export-pdf').addEventListener('click', async () => {
+  const { jsPDF } = window.jspdf;
+  const table = document.querySelector('table');
+  // capture as image
+  const canvas = await html2canvas(table, { scale: 2, backgroundColor: '#ffffff', useCORS: true });
+  const imgData = canvas.toDataURL('image/png');
+
+  const pdf = new jsPDF('p', 'mm', 'a4');
+  const pdfWidth = pdf.internal.pageSize.getWidth();
+  const pdfHeight = pdf.internal.pageSize.getHeight();
+
+  // compute image dims to keep aspect ratio
+  const imgProps = pdf.getImageProperties(imgData);
+  const imgWidthMm = pdfWidth;
+  const imgHeightMm = (imgProps.height * imgWidthMm) / imgProps.width;
+
+  if (imgHeightMm <= pdfHeight) {
+    pdf.addImage(imgData, 'PNG', 0, 0, imgWidthMm, imgHeightMm);
+  } else {
+    // If long, tile image across pages
+    let position = 0;
+    let remainingHeight = imgHeightMm;
+    // draw first page
+    pdf.addImage(imgData, 'PNG', 0, position, imgWidthMm, imgHeightMm);
+    remainingHeight -= pdfHeight;
+    while (remainingHeight > 0) {
+      position -= pdfHeight;
+      pdf.addPage();
+      pdf.addImage(imgData, 'PNG', 0, position, imgWidthMm, imgHeightMm);
+      remainingHeight -= pdfHeight;
+    }
+  }
+
+  pdf.save('platforms.pdf');
+});
+</script>
+<style>
+  /* small styles for the export buttons */
+  #export-png, #export-pdf {
+    background: var(--AIMblue);
+    color: var(--white);
+    border: none;
+    padding: 8px 12px;
+    font-family: inherit;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+</style>
+</html>
